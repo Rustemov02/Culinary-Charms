@@ -16,7 +16,7 @@ export default function Category({ name }) {
 
     const getSuggestion = e => {
         const randomNumb = Math.floor(Math.random() * selectedItems.length)
-        setSelectedItems(database.yemekler[e].iütems)
+        setSelectedItems(database.yemekler[e].items)
         setRandomItem(selectedItems[randomNumb])
         setOpen(true)
     }
