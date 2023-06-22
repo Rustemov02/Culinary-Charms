@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Login from './Login'
 import Category from './Category'
 import './App.css'
+import Test from './Test'
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
 
   return (
     <div>
+      {/* <Test/> */}
       {isOpen ? <Category name={username} /> : <Login name={name} changeValue={handleInputChange} login={handleAddToLocalStorage} />}
     </div>
   )

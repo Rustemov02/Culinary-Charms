@@ -16,7 +16,7 @@ export default function Category({ name }) {
 
     const getSuggestion = e => {
         const randomNumb = Math.floor(Math.random() * selectedItems.length)
-        setSelectedItems(database.yemekler[e].items)
+        setSelectedItems(database.yemekler[e].iütems)
         setRandomItem(selectedItems[randomNumb])
         setOpen(true)
     }
@@ -44,14 +44,15 @@ export default function Category({ name }) {
     const sendEmail = (e) => {
         e.preventDefault();
 
+        if(value.trim() == '') return alert('Mesaj hissəsini boş qoymayın !')
+
         emailjs.sendForm('service_ne8grdn', 'template_n7iku69', form.current, 'nhvADr2G-rlep_jlW')
             .then((result) => {
-                if (result.text === 'OK') {
+                    console.log(result.text)
                     setSecondOpen(false)
                     alert("Təşəkkür edirik mesajınız göndərildi :)")
-                } else {
-                    alert('Bir xəta baş verdi..Yenidən cəhd edin')
-                }
+            }, (error) => {
+                console.log(error.text);
             })
     };
 
@@ -84,7 +85,7 @@ export default function Category({ name }) {
                 }}>Sizə təklif etdiyimiz yemək !</DialogTitle>
                 <Suggestion randomItem={randomItem} isOpen={true} getSuggestion={getSuggestion} />
             </Dialog >
- 
+
             {/* Comment area - send Email */}
             <Backdrop open={secondDialogOpen}>
                 <div className='comment'>
@@ -92,7 +93,9 @@ export default function Category({ name }) {
                     <button className='close' onClick={() => setSecondOpen(false)}>X</button>
                     <form ref={form} onSubmit={sendEmail}>
                         <input type="text" name="user_name" value={name} style={{ display: 'none' }} readOnly />
-                        <textarea value={value} name='message' onChange={(e) => setValue(e.target.value)} placeholder='Mesajınız...' style={{
+                        <textarea name='message' value={value}  onChange={(e) => {
+                            setValue(e.target.value) 
+                        }} placeholder='Mesajınız...' style={{
                             width: '100%',
                             height: '100px',
                             padding: '12px 10px',
@@ -101,7 +104,7 @@ export default function Category({ name }) {
                             borderRadius: '5px'
                         }} />
 
-                        <button type='submit' className='send-button' onClick={() => setValue('')}>Göndər</button>
+                        <button type='submit' className='send-button'>Göndər</button>
                     </form>
                 </div>
             </Backdrop>
