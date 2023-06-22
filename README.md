@@ -6,4 +6,4 @@ Bu layihəmi ReactJs vasitəsilə hazırlamışam.İstifadəçi öz fikirlərini
 
 Tamamilə əyləncə məqsədilə hazırlanmışdır... :)
  
-suggestion02.netlify.app/
+suggestion02.netlify.app
