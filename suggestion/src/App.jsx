@@ -15,6 +15,7 @@ export default function App() {
   const username = localStorage.getItem('inputValue')
 
   const handleAddToLocalStorage = () => {
+    if(name.trim() == '') return alert('Zəhmət olmasa adınızı daxil edin ')
     localStorage.setItem('inputValue', name)
     setName('')
   }
